@@ -636,7 +636,7 @@ const MineralExplorationDashboard = () => {
     }, 1500);
   };
   
-  const simulateAnalysis = (data) => {
+const simulateAnalysis = (data: any) => {
     // This function simulates running the model on the input data
     
     return {

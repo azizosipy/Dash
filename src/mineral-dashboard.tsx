@@ -1,5 +1,5 @@
   // Add a Geological Mapping component for heatmaps and detailed visualization
-const GeologicalMapping = ({ data }: { data: any }) => {
+  const GeologicalMapping = ({ data }: { data: any }) => {
     if (!data) return null;
     
     // Sample heatmap data - this would come from the actual analysis
@@ -241,7 +241,7 @@ const GeologicalMapping = ({ data }: { data: any }) => {
       </div>
     );
   };  // Add the Agentic System component
-  const AgenticSystem = ({ data }) => {
+  const AgenticSystem = ({ data }: { data: any }) => {
     if (!data) return null;
     
     const [agentLog, setAgentLog] = useState([
@@ -453,7 +453,7 @@ const GeologicalMapping = ({ data }: { data: any }) => {
         </div>
       </div>
     );
-  };  const KnowledgeBaseResults = ({ data }) => {
+  };  const KnowledgeBaseResults = ({ data }: { data: any }) => {
     if (!data || !data.retrieved_knowledge) return null;
     
     const knowledgeData = data.retrieved_knowledge;
@@ -636,122 +636,7 @@ const MineralExplorationDashboard = () => {
     }, 1500);
   };
   
-  const simulateAnalysis = (data) => {
-    // This function simulates running the model on the input data
-    
-    return {
-      input_data: data,
-      refined_predictions: {
-        deposit_type: data.deposit_type || 'Porphyry',
-        deposit_type_confidence: 0.85,
-        alternative_deposit_types: [
-          { type: 'Skarn', probability: 0.45 },
-          { type: 'IOCG', probability: 0.30 }
-        ],
-        mineral_types: [
-          { mineral: 'Chalcopyrite', probability: 0.92, source: 'reported mineralogy' },
-          { mineral: 'Bornite', probability: 0.78, source: 'reported mineralogy' },
-          { mineral: 'Molybdenite', probability: 0.86, source: 'reported mineralogy' },
-          { mineral: 'Pyrite', probability: 0.95, source: 'reported mineralogy' }
-        ],
-        commodities: [
-          { commodity: 'Copper', probability: 0.94, source: 'typical for porphyry deposits' },
-          { commodity: 'Molybdenum', probability: 0.88, source: 'typical for porphyry deposits' },
-          { commodity: 'Gold', probability: 0.76, source: 'typical for porphyry deposits' }
-        ],
-        grade_estimates: {
-          copper: { low: 0.3, average: 0.5, high: 0.8, unit: '%', confidence: 0.75 },
-          molybdenum: { low: 0.01, average: 0.02, high: 0.05, unit: '%', confidence: 0.7 },
-          gold: { low: 0.2, average: 0.4, high: 0.8, unit: 'g/t', confidence: 0.65 }
-        },
-        resource_estimates: {
-          size_category: 'large',
-          estimated_tonnage: 300,
-          unit: 'Mt',
-          range: { low: 150, high: 450 },
-          confidence: 0.7
-        },
-        confidence_assessment: {
-          overall_confidence: 0.72,
-          confidence_level: 'High',
-          factors: {
-            data_completeness: 0.8,
-            deposit_type_confidence: 0.85,
-            mineralization_evidence: 0.75,
-            knowledge_support: 0.65
-          },
-          explanation: "The input data is reasonably complete, supporting reliable analysis. There is good evidence supporting the deposit type classification."
-        }
-      },
-      exploration_strategy: {
-        drilling: {
-          pattern: 'grid',
-          spacing: '100-200m',
-          depth: '300-1000m',
-          angle: 'vertical and angled',
-          priority_targets: 'potassic alteration core, phyllic alteration zone',
-          specific_targets: [
-            "Potassic alteration core",
-            "Phyllic alteration zone",
-            "Stockwork veining"
-          ]
-        },
-        geophysical_surveys: [
-          {
-            method: 'ip',
-            priority: 'high',
-            rationale: 'Highly effective for mapping disseminated sulfide distributions in porphyry systems.'
-          },
-          {
-            method: 'magnetic',
-            priority: 'high',
-            rationale: 'Identifies magnetite associated with potassic alteration and helps map intrusive boundaries.'
-          }
-        ],
-        budget_allocation: {
-          geological_mapping: 0.15,
-          geochemical_sampling: 0.20,
-          geophysical_surveys: 0.20,
-          drilling: 0.40,
-          metallurgical_testing: 0.05
-        },
-        timeline: [
-          {
-            phase: 'Phase 1',
-            activity: 'Detailed mapping',
-            start_month: 1,
-            duration_months: 2,
-            end_month: 3,
-            priority: 'high'
-          },
-          {
-            phase: 'Phase 1',
-            activity: 'Geochemical sampling',
-            start_month: 2,
-            duration_months: 2,
-            end_month: 4,
-            priority: 'high'
-          },
-          {
-            phase: 'Phase 2',
-            activity: 'Scout drilling',
-            start_month: 5,
-            duration_months: 3,
-            end_month: 8,
-            priority: 'high'
-          }
-        ]
-      },
-      decision_explanation: "The geological context suggests a porphyry deposit type with high confidence, based on the host rocks matching typical host rocks for porphyry. Primary economic commodities would be copper, molybdenum, gold.",
-      retrieved_knowledge: {
-        relevant_deposits: [
-          { name: 'Bingham Canyon', location: 'Utah, USA', similarity: 0.85 },
-          { name: 'El Teniente', location: 'Chile', similarity: 0.82 },
-          { name: 'Grasberg', location: 'Indonesia', similarity: 0.78 }
-        ]
-      }
-    };
-  };
+  const simulateAnalysis = () => null;
   
   // Components
   const InputForm = () => (
@@ -811,7 +696,7 @@ const MineralExplorationDashboard = () => {
     </div>
   );
   
-  const DepositTypePrediction = ({ data }) => {
+  const DepositTypePrediction = ({ data }: { data: any }) => {
     if (!data || !data.refined_predictions) return null;
     
     const { deposit_type, deposit_type_confidence, alternative_deposit_types } = data.refined_predictions;
@@ -881,7 +766,7 @@ const MineralExplorationDashboard = () => {
     );
   };
   
-  const MineralizationAnalysis = ({ data }) => {
+  const MineralizationAnalysis = ({ data }: { data: any }) => {
     if (!data || !data.refined_predictions) return null;
     
     const { mineral_types, commodities, grade_estimates } = data.refined_predictions;
@@ -951,7 +836,7 @@ const MineralExplorationDashboard = () => {
     );
   };
   
-  const ExplorationRecommendations = ({ data }) => {
+  const ExplorationRecommendations = ({ data }: { data: any }) => {
     if (!data || !data.exploration_strategy) return null;
     
     const { drilling, geophysical_surveys, budget_allocation, timeline } = data.exploration_strategy;
@@ -1043,7 +928,7 @@ const MineralExplorationDashboard = () => {
   };
   
   // Update the SimilarDeposits component with better mapping
-  const SimilarDeposits = ({ data }) => {
+  const SimilarDeposits = ({ data }: { data: any }) => {
     if (!data || !data.retrieved_knowledge || !data.retrieved_knowledge.relevant_deposits) return null;
     
     const { relevant_deposits } = data.retrieved_knowledge;
@@ -1150,7 +1035,7 @@ const MineralExplorationDashboard = () => {
     );
   };
   
-  const ConfidenceAssessment = ({ data }) => {
+  const ConfidenceAssessment = ({ data }: { data: any }) => {
     if (!data || !data.refined_predictions || !data.refined_predictions.confidence_assessment) return null;
     
     const { confidence_assessment } = data.refined_predictions;

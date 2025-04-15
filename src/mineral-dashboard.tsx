@@ -765,7 +765,7 @@ const simulateAnalysis = (data: any) => {
             value={inputData.host_rocks}
             onChange={handleInputChange}
             className="mt-1 block w-full rounded-md border border-gray-300 p-2"
-            rows="2"
+          rows={2}
           />
         </div>
         <div>
@@ -775,7 +775,7 @@ const simulateAnalysis = (data: any) => {
             value={inputData.geological_features}
             onChange={handleInputChange}
             className="mt-1 block w-full rounded-md border border-gray-300 p-2"
-            rows="2"
+        rows={2}
           />
         </div>
         <div>

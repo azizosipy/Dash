@@ -1,5 +1,5 @@
   // Add a Geological Mapping component for heatmaps and detailed visualization
-  const GeologicalMapping = ({ data }) => {
+const GeologicalMapping = ({ data }: { data: any }) => {
     if (!data) return null;
     
     // Sample heatmap data - this would come from the actual analysis

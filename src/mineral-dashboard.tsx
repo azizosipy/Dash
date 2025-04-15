@@ -603,7 +603,7 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'
 const MineralExplorationDashboard = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [inputData, setInputData] = useState(SAMPLE_DATA);
-  const [analysisResults, setAnalysisResults] = useState(null);
+  const [analysisResults, setAnalysisResults] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   
   // Initialize with sample data

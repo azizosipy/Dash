@@ -819,7 +819,7 @@ const simulateAnalysis = (data: any) => {
     // Prepare data for pie chart
     const pieData = [
       { name: deposit_type, value: deposit_type_confidence },
-      ...(alternative_deposit_types || []).map(alt => ({
+...(alternative_deposit_types || []).map((alt: { type: string; probability: number }) => ({
         name: alt.type,
         value: alt.probability
       }))

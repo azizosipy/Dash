@@ -58,7 +58,7 @@
               <div className="absolute bottom-2 right-2 bg-white bg-opacity-75 p-2 rounded">
                 <div className="text-xs font-medium mb-1">Mineralization Potential</div>
                 <div className="flex h-3">
-                  {heatmapColors.map((color, idx) => (
+                  {heatmapColors.map((color: any, idx: number) => (
                     <div key={idx} className="w-3" style={{backgroundColor: color}}></div>
                   ))}
                 </div>
@@ -119,7 +119,7 @@
               <div className="absolute bottom-2 right-2 bg-white bg-opacity-75 p-2 rounded">
                 <div className="text-xs font-medium mb-1">Magnetic Intensity</div>
                 <div className="flex h-3">
-                  {heatmapColors.map((color, idx) => (
+                  {heatmapColors.map((color: any, idx: number) => (
                     <div key={idx} className="w-3" style={{backgroundColor: color}}></div>
                   ))}
                 </div>
@@ -163,7 +163,7 @@
               <div className="absolute bottom-2 right-2 bg-white bg-opacity-75 p-2 rounded">
                 <div className="text-xs font-medium mb-1">Cu in Soil (ppm)</div>
                 <div className="flex h-3">
-                  {heatmapColors.map((color, idx) => (
+                  {heatmapColors.map((color: any, idx: number) => (
                     <div key={idx} className="w-3" style={{backgroundColor: color}}></div>
                   ))}
                 </div>
@@ -286,7 +286,7 @@
                 <Terminal size={14} className="mr-1" />
                 <span>Agent Reasoning Trace</span>
               </div>
-              {agentLog.map((log, idx) => (
+              {agentLog.map((log: any, idx: number) => (
                 <div key={idx} className="mb-1">
                   {idx === agentLog.length - 1 ? (
                     <span className="flex items-center">
@@ -481,7 +481,7 @@
           <div>
             <h3 className="text-lg font-semibold mb-3">Retrieved Similar Deposit Types</h3>
             <div className="space-y-2">
-          depositTypeData.map((item: any, idx: number) => (
+              {depositTypeData.map((item: any, idx: number) => (
                 <div key={idx} className="flex items-center">
                   <div className="w-36 text-sm font-medium">{item.name}</div>
                   <div className="flex-grow h-4 bg-gray-200 rounded-full overflow-hidden">
@@ -499,7 +499,7 @@
           <div>
             <h3 className="text-lg font-semibold mb-3">Retrieved Host Rock Associations</h3>
             <div className="space-y-2">
-              {hostRockData.map((item, idx) => (
+              {hostRockData.map((item: any, idx: number) => (
                 <div key={idx} className="flex items-center">
                   <div className="w-36 text-sm font-medium">{item.name}</div>
                   <div className="flex-grow h-4 bg-gray-200 rounded-full overflow-hidden">
@@ -519,7 +519,7 @@
           <h3 className="text-lg font-semibold mb-3">Pathfinder Element Knowledge</h3>
           <div className="p-4 bg-gray-50 rounded-lg">
             <div className="flex flex-wrap gap-2">
-              {knowledgeData.pathfinder_elements && knowledgeData.pathfinder_elements.map((element, idx) => (
+              {knowledgeData.pathfinder_elements && knowledgeData.pathfinder_elements.map((element: any, idx: number) => (
                 <div key={idx} className="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">
                   {element}
                 </div>
@@ -636,7 +636,122 @@ const MineralExplorationDashboard = () => {
     }, 1500);
   };
   
-  const simulateAnalysis = () => null;
+  const simulateAnalysis = (data) => {
+    // This function simulates running the model on the input data
+    
+    return {
+      input_data: data,
+      refined_predictions: {
+        deposit_type: data.deposit_type || 'Porphyry',
+        deposit_type_confidence: 0.85,
+        alternative_deposit_types: [
+          { type: 'Skarn', probability: 0.45 },
+          { type: 'IOCG', probability: 0.30 }
+        ],
+        mineral_types: [
+          { mineral: 'Chalcopyrite', probability: 0.92, source: 'reported mineralogy' },
+          { mineral: 'Bornite', probability: 0.78, source: 'reported mineralogy' },
+          { mineral: 'Molybdenite', probability: 0.86, source: 'reported mineralogy' },
+          { mineral: 'Pyrite', probability: 0.95, source: 'reported mineralogy' }
+        ],
+        commodities: [
+          { commodity: 'Copper', probability: 0.94, source: 'typical for porphyry deposits' },
+          { commodity: 'Molybdenum', probability: 0.88, source: 'typical for porphyry deposits' },
+          { commodity: 'Gold', probability: 0.76, source: 'typical for porphyry deposits' }
+        ],
+        grade_estimates: {
+          copper: { low: 0.3, average: 0.5, high: 0.8, unit: '%', confidence: 0.75 },
+          molybdenum: { low: 0.01, average: 0.02, high: 0.05, unit: '%', confidence: 0.7 },
+          gold: { low: 0.2, average: 0.4, high: 0.8, unit: 'g/t', confidence: 0.65 }
+        },
+        resource_estimates: {
+          size_category: 'large',
+          estimated_tonnage: 300,
+          unit: 'Mt',
+          range: { low: 150, high: 450 },
+          confidence: 0.7
+        },
+        confidence_assessment: {
+          overall_confidence: 0.72,
+          confidence_level: 'High',
+          factors: {
+            data_completeness: 0.8,
+            deposit_type_confidence: 0.85,
+            mineralization_evidence: 0.75,
+            knowledge_support: 0.65
+          },
+          explanation: "The input data is reasonably complete, supporting reliable analysis. There is good evidence supporting the deposit type classification."
+        }
+      },
+      exploration_strategy: {
+        drilling: {
+          pattern: 'grid',
+          spacing: '100-200m',
+          depth: '300-1000m',
+          angle: 'vertical and angled',
+          priority_targets: 'potassic alteration core, phyllic alteration zone',
+          specific_targets: [
+            "Potassic alteration core",
+            "Phyllic alteration zone",
+            "Stockwork veining"
+          ]
+        },
+        geophysical_surveys: [
+          {
+            method: 'ip',
+            priority: 'high',
+            rationale: 'Highly effective for mapping disseminated sulfide distributions in porphyry systems.'
+          },
+          {
+            method: 'magnetic',
+            priority: 'high',
+            rationale: 'Identifies magnetite associated with potassic alteration and helps map intrusive boundaries.'
+          }
+        ],
+        budget_allocation: {
+          geological_mapping: 0.15,
+          geochemical_sampling: 0.20,
+          geophysical_surveys: 0.20,
+          drilling: 0.40,
+          metallurgical_testing: 0.05
+        },
+        timeline: [
+          {
+            phase: 'Phase 1',
+            activity: 'Detailed mapping',
+            start_month: 1,
+            duration_months: 2,
+            end_month: 3,
+            priority: 'high'
+          },
+          {
+            phase: 'Phase 1',
+            activity: 'Geochemical sampling',
+            start_month: 2,
+            duration_months: 2,
+            end_month: 4,
+            priority: 'high'
+          },
+          {
+            phase: 'Phase 2',
+            activity: 'Scout drilling',
+            start_month: 5,
+            duration_months: 3,
+            end_month: 8,
+            priority: 'high'
+          }
+        ]
+      },
+      decision_explanation: "The geological context suggests a porphyry deposit type with high confidence, based on the host rocks matching typical host rocks for porphyry. Primary economic commodities would be copper, molybdenum, gold.",
+      retrieved_knowledge: {
+        relevant_deposits: [
+          { name: 'Bingham Canyon', location: 'Utah, USA', similarity: 0.85 },
+          { name: 'El Teniente', location: 'Chile', similarity: 0.82 },
+          { name: 'Grasberg', location: 'Indonesia', similarity: 0.78 }
+        ]
+      }
+    };
+  };
   
   // Components
   const InputForm = () => (
@@ -726,7 +841,7 @@ const MineralExplorationDashboard = () => {
             <div>
               <h3 className="text-lg font-semibold">Alternative Deposit Types</h3>
               <div className="mt-2 space-y-2">
-                {alternative_deposit_types && alternative_deposit_types.map((alt, idx) => (
+                {alternative_deposit_types && alternative_deposit_types.map((alt: any, idx: number) => (
                   <div key={idx} className="p-2 bg-gray-50 border border-gray-200 rounded">
                     <div className="font-medium">{alt.type}</div>
                     <div className="text-sm text-gray-500">Probability: {(alt.probability * 100).toFixed(1)}%</div>
@@ -751,7 +866,7 @@ const MineralExplorationDashboard = () => {
                     dataKey="value"
                     label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
                   >
-                    {pieData.map((entry, index) => (
+                    {pieData.map((entry: any, index: number) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -792,7 +907,7 @@ const MineralExplorationDashboard = () => {
                   <YAxis domain={[0, 1]} tickFormatter={(value) => `${(value * 100).toFixed(0)}%`} />
                   <Tooltip formatter={(value) => `${(value * 100).toFixed(1)}%`} />
                   <Bar dataKey="probability" fill="#8884d8">
-                    {mineralData.map((entry, index) => (
+                    {mineralData.map((entry: any, index: number) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Bar>
@@ -891,7 +1006,7 @@ const MineralExplorationDashboard = () => {
                     dataKey="value"
                     label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
                   >
-                    {budgetData.map((entry, index) => (
+                    {budgetData.map((entry: any, index: number) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -905,7 +1020,7 @@ const MineralExplorationDashboard = () => {
           <div>
             <h3 className="text-lg font-semibold mb-2">Geophysical Surveys</h3>
             <div className="space-y-2">
-              {geophysical_surveys && geophysical_surveys.map((survey, idx) => (
+              {geophysical_surveys && geophysical_surveys.map((survey: any, idx: number) => (
                 <div key={idx} className="p-3 bg-gray-50 rounded-md">
                   <div className="flex justify-between">
                     <div className="font-medium capitalize">{survey.method} Survey</div>
@@ -939,7 +1054,7 @@ const MineralExplorationDashboard = () => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-3">
-            {relevant_deposits.map((deposit, idx) => (
+            {relevant_deposits.map((deposit: any, idx: number) => (
               <div key={idx} className="p-3 bg-gray-50 rounded-md">
                 <div className="font-medium text-blue-700">{deposit.name}</div>
                 <div className="text-sm text-gray-700">Location: {deposit.location}</div>

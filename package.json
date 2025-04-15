@@ -34,7 +34,6 @@
     "recharts": "^2.9.0",
     "three": "^0.158.0",
     "turf": "^3.0.14",
-    "xgboost": "^2.9.4",
     "zustand": "^4.4.6"
   },
   "devDependencies": {

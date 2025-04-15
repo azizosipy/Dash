@@ -481,7 +481,7 @@
           <div>
             <h3 className="text-lg font-semibold mb-3">Retrieved Similar Deposit Types</h3>
             <div className="space-y-2">
-              {depositTypeData.map((item, idx) => (
+          depositTypeData.map((item: any, idx: number) => (
                 <div key={idx} className="flex items-center">
                   <div className="w-36 text-sm font-medium">{item.name}</div>
                   <div className="flex-grow h-4 bg-gray-200 rounded-full overflow-hidden">

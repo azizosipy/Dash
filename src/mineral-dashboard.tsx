@@ -617,7 +617,7 @@ const MineralExplorationDashboard = () => {
     }, 1500);
   }, []);
   
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setInputData(prev => ({
       ...prev,
